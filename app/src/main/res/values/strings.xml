@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">ListProfile</string>
-    <string name="demo_text">this text is for demonstrait</string>
+    <string name="demo_text">Demonstrate Text</string>
     <string name="text_size_small">20dp</string>
     <string name="text_size_medium">25dp</string>
     <string name="avt_description">profile picture</string>
     <string name="profile_image">profile image</string>
+    <string name="background_image">background image</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
 </resources>
