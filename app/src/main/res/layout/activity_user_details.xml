@@ -43,7 +43,7 @@
         android:orientation="vertical"
         android:paddingBottom="16dp"
         android:background="@color/background">
-        <TextView
+        <EditText
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +52,8 @@
             android:textSize="28sp"
             android:layout_marginTop="8sp"
             android:layout_marginStart="22sp"
+            android:background="@null"
+            android:focusable="false"
             android:textStyle="bold"/>
         <ScrollView
             android:layout_width="match_parent"
@@ -83,13 +85,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel"/>
+
                 <Button
                     android:id="@+id/editBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/cancelBtn"
                     android:layout_marginStart="50dp"
-                    android:text="@string/edit"/>
+                    android:layout_toEndOf="@+id/cancelBtn"
+                    android:text="@string/edit" />
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>

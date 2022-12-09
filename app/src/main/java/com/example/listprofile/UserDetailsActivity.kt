@@ -1,9 +1,11 @@
 package com.example.listprofile
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -13,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.listprofile.Models.User
 
 class UserDetailsActivity: AppCompatActivity() {
+
+	companion object {
+		val USER_DETAILS_CODE = 1
+	}
 
 	private var isEditButtonClicked = false
 	private lateinit var usersInfoFragment: ArrayList<UserInfo>
@@ -54,34 +60,48 @@ class UserDetailsActivity: AppCompatActivity() {
 	}
 
 	private fun onSaveBtnClicked() {
+
+		var v: EditText
+
 		for (userInfo in usersInfoFragment) {
-			val t = userInfo.requireView().findViewById<EditText>(R.id.edit_text)
-			t.isFocusable = false
-			t.isFocusableInTouchMode = false
+			v = userInfo.requireView().findViewById(R.id.edit_text)
+			v.isFocusable = false
+			v.isFocusableInTouchMode = false
 		}
+		v = findViewById(R.id.username)
+		v.isFocusable = true
+		v.isFocusableInTouchMode = true
 		val user = User(
+			user.id,
 			user.avt,
 			user.background,
-			user.name,
+			v.text.toString(),
 			usersInfoFragment[0].view?.findViewById<EditText>(R.id.edit_text)?.text.toString(),
 			usersInfoFragment[1].view?.findViewById<EditText>(R.id.edit_text)?.text.toString(),
 			null,
 			usersInfoFragment[2].view?.findViewById<EditText>(R.id.edit_text)?.text.toString(),
 		)
+
 		this.user = user
-		val intent = Intent(this@UserDetailsActivity, MainActivity::class.java)
+		val intent = Intent()
 		val bundle = Bundle()
 		bundle.putParcelable("user", user)
 		intent.putExtras(bundle)
-		startActivity(intent)
+		setResult(RESULT_OK, intent)
+		finish()
 	}
 
 	private fun onEditBtnClicked() {
+		var v = findViewById<EditText>(R.id.username)
+		v.isFocusable = true
+		v.isFocusableInTouchMode = true
+
 		for (userInfo in usersInfoFragment) {
-			val v = userInfo.requireView().findViewById<EditText>(R.id.edit_text)
+			v = userInfo.requireView().findViewById(R.id.edit_text)
 			v.isFocusable = true
 			v.isFocusableInTouchMode = true
 		}
+
 	}
 
 	@SuppressLint("UseRequireInsteadOfGet")
@@ -89,7 +109,7 @@ class UserDetailsActivity: AppCompatActivity() {
 		val trans = supportFragmentManager.beginTransaction()
 		findViewById<ImageView>(R.id.background).setImageResource(user.background!!)
 		findViewById<ImageView>(R.id.avt).setImageResource(user.avt)
-		findViewById<TextView>(R.id.username).text = user.name
+		findViewById<EditText>(R.id.username).setText(user.name)
 
 		usersInfoFragment.add(UserInfo("Địa chỉ", user.address!!))
 		usersInfoFragment.add(UserInfo("Số điện thoại", user.phoneNumber!!))

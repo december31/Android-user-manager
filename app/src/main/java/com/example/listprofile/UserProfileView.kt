@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.listprofile.Models.User
+import org.w3c.dom.Text
 
 class UserProfileView(private val user: User) :
 	Fragment(),

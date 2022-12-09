@@ -6,6 +6,7 @@ import com.example.listprofile.R
 import java.util.Date
 
 data class User(
+	val id: Int,
 	val avt: Int,
 	val background: Int?,
 	val name: String,
@@ -15,6 +16,7 @@ data class User(
 	val email: String,
 ): Parcelable {
 	constructor(parcel: Parcel) : this(
+		id = parcel.readInt(),
 		avt = parcel.readInt(),
 		background = parcel.readInt(),
 		name = parcel.readString().toString(),
@@ -30,6 +32,7 @@ data class User(
 	}
 
 	override fun writeToParcel(dest: Parcel?, p1: Int) {
+		dest?.writeInt(id)
 		dest?.writeInt(avt)
 		if (background != null) {
 			dest?.writeInt(background)
